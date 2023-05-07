@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment # Kubernetes resource kind we are creating
+metadata:
+  name: sample-poc-crud
+spec:
+  selector:
+    matchLabels:
+      app: sample-poc-crud
+  replicas: 3 # Number of replicas that will be created for this deployment
+  template:
+    metadata:
+      labels:
+        app: sample-poc-crud
+    spec:
+      containers:
+        - name: sample-poc-crud-container
+          image: {{ .Values.image.repository }} # Image that will be used to containers in the cluster
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: {{ .Values.service.port }} # The port that the container is running on in the cluster

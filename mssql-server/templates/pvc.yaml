@@ -1,0 +1,15 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: mssql-pvc
+  labels:
+    app: mssql-server-app
+spec:
+  accessModes:
+  - ReadWriteOnce
+  selector:
+    matchLabels:
+      name: mssql-server-app
+  resources:
+    requests:
+      storage: 6Gi
